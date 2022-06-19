@@ -37,9 +37,6 @@ textInputEl.addEventListener('input', function(event){
   if(/\s/g.test(charEntered)){
     checkWord();
   }
-  else{
-    currentWord();
-  }
 });
 
 
@@ -122,21 +119,22 @@ function displayScore(){
   endStat2.classList.add("showAtEnd");
 }
 
-//check if the user is entering correcrt word
-function currentWord(){
-  const wordEntered = textInputEl.value;
-  const currentID = "word " + currentWordIndex;
-  const currentSpan = document.getElementById(currentID);
-  const curSpanWord = currentSpan.innerText;
+//check if the user is entering current word
+// function currentWord(){
+//   const wordEntered = textInputEl.value;
+//   const currentID = "word " + currentWordIndex;
+//   const currentSpan = document.getElementById(currentID);
+//   const curSpanWord = currentSpan.innerText;
 
-  if(wordEntered == curSpanWord.substring(0,wordEntered.length)){
-    changeWordColor(currentID, 2);
-  }
-  else{
-    changeWordColor(currentID, 3);
-  }
+//   //if current word, keep styling current
+//   if(wordEntered == curSpanWord.substring(0,wordEntered.length)){
+//     changeWordColor(currentID, 2);
+//   }
+//   else{ 
+//     changeWordColor(currentID, 3);
+//   }
 
-}
+// }
 
 //checks word entered
 function checkWord(){
