@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <div class="container-fluid box ">
+    <div class="gameArea">
       <div class="top">
           <h1 id="heading" >Test Your Typing Speed</h1>
       </div>
@@ -16,13 +16,21 @@
       <div class="scoreBoard center">
         <div id="outerDiv">
           <div id="innerDiv">
+            <div id="endStat1" class="wrapperDiv hideAtStart">
+              <div class="labelDiv">WPM</div>
+              <div id="wordsPerMinute" class="dataDiv">0</div>
+            </div>
+            <div id="endStat2" class="wrapperDiv hideAtStart">
+              <div class="labelDiv">CPM</div>
+              <div id="keyStrokesPerMinute" class="dataDiv">0</div>
+            </div>
             <div class="wrapperDiv">
               <div class="labelDiv">Errors</div>
               <div id="errors" class="dataDiv">0</div>
             </div>
             <div class="wrapperDiv">
               <div class="labelDiv">Time</div>
-              <div id="timeDisplay" class="dataDiv">30</div>
+              <div id="timeDisplay" class="dataDiv">30</div> <!--debug: change to 5 for debugging, change to 30 when code complete-->
             </div>
             <div class="wrapperDiv">
               <div class="labelDiv">Accuracy</div>
