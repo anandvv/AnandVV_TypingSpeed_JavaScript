@@ -1,31 +1,40 @@
-const gameContent = document.getElementById("gameContent");
-const textInput = document.getElementById("textInput");
-const time = document.getElementById("timeDisplay");
-const accuracy = document.getElementById("accuracy");
-const refreshGame = document.getElementById("btnRefresh");
+const gameContentEl = document.getElementById("gameContent");
+const textInputEl = document.getElementById("textInput");
+const timeEl = document.getElementById("timeDisplay");
+const accuracyEl = document.getElementById("accuracyPercent");
+const refreshGameEl = document.getElementById("btnRefresh");
+const endStat1El = document.getElementById("endStat1");
+const endStat2El = document.getElementById("endStat2");
+const wordsPerMinuteEl = document.getElementById("wordsPerMinute");
+const keyStrokesPerMinuteEl = document.getElementById("keyStrokesPerMinute")
 
 var currentWordIndex = 1;
 var wordsEnteredByUser = 0;
 var correctWords = 0;
 var incorrectWords = 0;
-var timer = 30;
+const timer = 30; //debug: change to 5 for debuggin, reset to 30 when code complete
 var isGameStarted = false;
 var seconds;
+var wordsPerMinute = 0;
+var keyStrokesPerMinute = 0;
 
 //let's start the game at beginner level
 restartGame();
 
 //on Input
-textInput.addEventListener('input', function(event){
+textInputEl.addEventListener('input', function(event){
   if(isGameStarted === false){
     isGameStarted = true;
     timeStart();
   }
 
+  //increase keycount each time this event fires
+  keyStrokesPerMinute++;
+
   var charEntered = event.data;
   
   //check if the character entered is a whitespace
-  if(/\s/g.test(charEntered)){  
+  if(/\s/g.test(charEntered)){
     checkWord();
   }
   else{
@@ -35,7 +44,7 @@ textInput.addEventListener('input', function(event){
 
 
 //refresh the Test
-refreshGame.addEventListener("click",function(){
+refreshGameEl.addEventListener("click",function(){
 
   //reset counts
   wordsEnteredByUser = 0;
@@ -46,19 +55,19 @@ refreshGame.addEventListener("click",function(){
   isGameStarted = false;
 
   //reset css for the scores
-  time.classList.remove("current");
+  timeEl.classList.remove("current");
   accuracyPercent.classList.remove("current");
   errors.classList.remove("red");
 
   //reset scores
-  time.innerText = timer;
+  timeEl.innerText = timer;
   errors.innerText = incorrectWords;
   accuracyPercent.innerText = "0%";
 
   //re-enable the input text box for adding items
-  textInput.disabled = false;
-  textInput.value = '';
-  textInput.focus();
+  textInputEl.disabled = false;
+  textInputEl.value = '';
+  textInputEl.focus();
 
   restartGame();
   clearInterval(seconds);
@@ -67,8 +76,8 @@ refreshGame.addEventListener("click",function(){
 //start the timer countdown
 function timeStart(){
   seconds = setInterval(function() {
-    time.innerText--;
-    if (time.innerText === "0") {
+    timeEl.innerText--;
+    if (timeEl.innerText === "0") {
       console.log("GAME OVER!!")
         timeOver();
         clearInterval(seconds);
@@ -78,8 +87,8 @@ function timeStart(){
 
 //diable textarea and wait for restart
 function timeOver(){
-  textInput.disabled = true;
-  refreshGame.focus();
+  textInputEl.disabled = true;
+  refreshGameEl.focus();
 
   displayScore();
 }
@@ -87,16 +96,35 @@ function timeOver(){
 
 //display the score
 function displayScore(){
+
+  //todo: calculate WPM
+  if(wordsEnteredByUser !== 0){
+    wordsPerMinute = (60 / timer) * wordsEnteredByUser;
+  }
+
+  wordsPerMinuteEl.innerText = wordsPerMinute;
+
+  //todo: calculate CPM
+  keyStrokesPerMinuteEl.innerText = keyStrokesPerMinute;
+
+  //calculate %accuracy
   let percentageAccuracy = 0;
   if(wordsEnteredByUser !== 0){
     percentageAccuracy = Math.floor((correctWords/wordsEnteredByUser) * 100);
   }
   accuracyPercent.innerText = percentageAccuracy + "%";
+
+  //show the hidden divs
+  endStat1.classList.remove("hideAtStart");
+  endStat2.classList.remove("hideAtStart");
+
+  endStat1.classList.add("showAtEnd");
+  endStat2.classList.add("showAtEnd");
 }
 
 //check if the user is entering correcrt word
 function currentWord(){
-  const wordEntered = textInput.value;
+  const wordEntered = textInputEl.value;
   const currentID = "word " + currentWordIndex;
   const currentSpan = document.getElementById(currentID);
   const curSpanWord = currentSpan.innerText;
@@ -112,8 +140,8 @@ function currentWord(){
 
 //checks word entered
 function checkWord(){
-  const wordEntered = textInput.value;
-  textInput.value='';
+  const wordEntered = textInputEl.value;
+  textInputEl.value='';
 
   const wordID = "word " + currentWordIndex;
   const checkSpan = document.getElementById(wordID);
@@ -164,14 +192,14 @@ function changeWordColor(id, color){
 //display the random words on screen
 function restartGame(){
   currentWordIndex = 1;
-  gameContent.innerHTML = '';
+  gameContentEl.innerHTML = '';
 
   let newTest = randomWords();
   newTest.forEach(function(word, i){
     let wordSpan = document.createElement('span');
     wordSpan.innerText = word;
     wordSpan.setAttribute("id", "word " + (i+1));
-    gameContent.appendChild(wordSpan);
+    gameContentEl.appendChild(wordSpan);
   });
 
   const nextID = "word "+ currentWordIndex;
