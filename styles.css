@@ -1,0 +1,118 @@
+/*use this for debugging the layout */
+/* *{
+  border: red;
+  border-style: dotted;
+} */
+
+html{
+  background: white;
+}
+
+body{
+  font-family: 'courier', monospace;
+  background: white;
+  color: #52575d;
+}
+
+a{
+  color: #52575d;
+}
+
+.red{
+  color: red;
+}
+
+.correct{
+  color: rgb(10, 138, 10);
+  font-weight: bold;
+}
+
+.incorrect{
+  color: red;
+  text-decoration: underline;
+}
+
+.center{
+  text-align: center;
+}
+
+#outerDiv {
+  width: 100%;
+  text-align: center;
+}
+
+#innerDiv {
+  display: inline-block;
+}
+
+.wrapperDiv{
+  float:left;
+  width: 150px;
+  height: 50px;
+  margin-right: 20px;
+  padding: 10px;
+  background-color: rgb(238, 237, 167);
+  border-radius: 5px;
+}
+
+.labelDiv{
+  float:left;
+  margin-top: 18px;
+  vertical-align: center;
+}
+
+.dataDiv{
+  float: right;
+  height: 50px;
+  margin-left: 5px;
+}
+
+.box {
+  max-width: 900px;
+  padding: 0 30px;
+}
+
+#heading{
+  text-align: center;
+  margin-top: 50px;
+  font-size: 2em;
+  font-family: 'Tahoma', sans-serif;
+  font-weight: 500;
+}
+
+.scoreBoard{
+  margin: 10px auto 20px auto;
+}
+
+.dataDiv{
+  font-size: 2.5em;
+  width: 60px;
+}
+
+.text-display{
+  margin: 0 0 22px 0;
+  font-size: 21px;
+  text-align: left;
+  min-height: 200px;
+}
+
+input:focus, textarea:focus, select:focus, a:focus{
+  outline: 0 ;
+}
+
+.restart-button{
+  padding: 10px;
+}
+
+textarea{
+  width: 80%;
+  background: rgb(237, 233, 233);
+  border: solid, #52575d;
+  border-width: 2px;
+  border-radius: 10px;
+  color: black;
+  padding: 10px;
+  font-size: 1.5rem;
+  resize: none;
+  text-align: center;
+}

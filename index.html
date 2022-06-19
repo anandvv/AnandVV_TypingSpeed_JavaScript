@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="This Speed Typing Test will give you an acuurate speed test and help increase your typing speed"/>
+    <title>Typing Test</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="container-fluid box ">
+      <div class="top">
+          <h1 id="heading" >Test Your Typing Speed</h1>
+      </div>
+
+      <div class="scoreBoard center">
+        <div id="outerDiv">
+          <div id="innerDiv">
+            <div class="wrapperDiv">
+              <div class="labelDiv">Errors</div>
+              <div id="errors" class="dataDiv">0</div>
+            </div>
+            <div class="wrapperDiv">
+              <div class="labelDiv">Time</div>
+              <div id="timeDisplay" class="dataDiv">30</div>
+            </div>
+            <div class="wrapperDiv">
+              <div class="labelDiv">Accuracy</div>
+              <div id="accuracyPercent" class="dataDiv">0%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-display" id="gameContent">
+
+      </div>
+
+      <div class="input-area center">
+        <textarea rows="1" class="text-input" id="textInput" autofocus autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+      </div>
+
+      <div  class="restart-button center">
+        <a id="btnRefresh" class = "current" href="#">
+          <button>Restart</button>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Javascript Code -->
+    <script src="app.js"></script>
+  </body>
+</html>
